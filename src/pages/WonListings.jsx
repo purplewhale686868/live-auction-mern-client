@@ -109,7 +109,7 @@ const WonListings = () => {
 
   useEffect(() => {
     const makeRequest = async () => {
-      const response = await fetch(`http://localhost:3001/checkout/payment`, {
+      const response = await fetch(`https://live-auction-app-server.onrender.com/checkout/payment`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
