@@ -134,7 +134,7 @@ const Listing = ({ listing }) => {
 
   const handleWatchlist = async () => {
     const response = await fetch(
-      `http://localhost:3001/listings/${updatedListing._id}/watchlist`,
+      `https://live-auction-app-server.onrender.com/listings/${updatedListing._id}/watchlist`,
       {
         method: "PATCH",
         headers: {
@@ -152,7 +152,7 @@ const Listing = ({ listing }) => {
     <Wrapper>
       <Container>
         <Image
-          src={`http://localhost:3001/assets/${updatedListing.imagePath}`}
+          src={`https://live-auction-app-server.onrender.com/assets/${updatedListing.imagePath}`}
         />
         <Info>
           <Icon>
