@@ -187,7 +187,7 @@ const Listing = () => {
   useEffect(() => {
     const getListing = async () => {
       const response = await fetch(
-        `http://localhost:3001/listings/find/${listingId}`,
+        `https://live-auction-app-server.onrender.com/listings/find/${listingId}`,
         {
           method: "GET",
         }
@@ -200,7 +200,7 @@ const Listing = () => {
 
   const handleBid = async () => {
     const response = await fetch(
-      `http://localhost:3001/listings/${listingId}/bidding`,
+      `https://live-auction-app-server.onrender.com/listings/${listingId}/bidding`,
       {
         method: "PATCH",
         headers: {
@@ -217,7 +217,7 @@ const Listing = () => {
 
   const handleClose = async () => {
     const response = await fetch(
-      `http://localhost:3001/listings/${listing?._id}/closeListing`,
+      `https://live-auction-app-server.onrender.com/listings/${listing?._id}/closeListing`,
       {
         method: "PATCH",
         headers: {
@@ -232,7 +232,7 @@ const Listing = () => {
 
   const handleWatchlist = async () => {
     const response = await fetch(
-      `http://localhost:3001/listings/${listing?._id}/watchlist`,
+      `https://live-auction-app-server.onrender.com/listings/${listing?._id}/watchlist`,
       {
         method: "PATCH",
         headers: {
@@ -251,7 +251,7 @@ const Listing = () => {
       <Navbar />
       <Wrapper>
         <ImgContainer>
-          <Image src={`http://localhost:3001/assets/${listing?.imagePath}`} />
+          <Image src={`https://live-auction-app-server.onrender.com/assets/${listing?.imagePath}`} />
           <Icon onClick={handleWatchlist}>
             {listing?.watchlistOwner.includes(user?._id) ? (
               <FavoriteIcon sx={{ color: "#ff4d4d" }} />
