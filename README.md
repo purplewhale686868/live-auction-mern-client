@@ -1,70 +1,20 @@
-# Getting Started with Create React App
+# Live Auction FullStack (MERN) Web App With Stripe Payment
+Website link: https://live-auction-app.onrender.com/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview of the Website
 
-## Available Scripts
+The live auction website is a platform that connects buyers and sellers from all over the world. It is designed to be easy to use and navigate, making it accessible to a wide range of people. The website offers a wide range of products and services, making it possible for users to buy and sell anything from art, jewelry to furniture. Once authenticated, each user is eligible to use three following features:
 
-In the project directory, you can run:
+### Creating Your Own Auction
 
-### `npm start`
+One of the key features of the website is the ability for users to create their own auctions. This process is simple and straightforward, requiring only a few key pieces of information such as the item being sold, the starting bid, and the description of the auction. Once the auction is created, it will be listed on the website and available for bidding by other users.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Bidding on Other Auctions
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Another important feature of the website is the ability to bid on other auctions. Users can like auctions that interest them and place their bids. The website uses a secure bidding system to ensure that all bids are recorded accurately and fairly.
 
-### `npm test`
+### Secure Payment with Stripe
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+One of the advantages of the live auction website is its integration with Stripe, a secure payment gateway that provides users with a fast and secure way to pay for their purchases. With Stripe, users can pay for their purchases using their credit or debit card, ensuring a safe and secure transaction.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
