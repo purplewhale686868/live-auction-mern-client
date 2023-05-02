@@ -18,7 +18,7 @@ const AllListings = () => {
   useEffect(() => {
     const getAllListings = async () => {
       const response = await fetch(
-        "http://localhost:3001/listings/allListings",
+        "https://live-auction-app-server.onrender.com/listings/allListings",
         {
           method: "GET",
         }
