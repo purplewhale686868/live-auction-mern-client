@@ -96,7 +96,7 @@ const Profile = () => {
   useEffect(() => {
     const getUserAuctions = async () => {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/listings`,
+        `https://live-auction-app-server.onrender.com/users/${userId}/listings`,
         {
           method: "GET",
           headers: {
@@ -114,7 +114,7 @@ const Profile = () => {
   useEffect(() => {
     const getUserWatchlist = async () => {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/watchlist`,
+        `https://live-auction-app-server.onrender.com/users/${userId}/watchlist`,
         {
           method: "GET",
           headers: {
@@ -132,7 +132,7 @@ const Profile = () => {
   useEffect(() => {
     const getWonListings = async () => {
       const response = await fetch(
-        `http://localhost:3001/users/${userId}/wonListings`,
+        `https://live-auction-app-server.onrender.com/users/${userId}/wonListings`,
         {
           method: "GET",
           headers: {
