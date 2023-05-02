@@ -19,7 +19,7 @@ const ActiveListings = ({ category }) => {
   useEffect(() => {
     const getAllListings = async () => {
       const response = await fetch(
-        `http://localhost:3001/listings/listings/${category}`,
+        `https://live-auction-app-server.onrender.com/listings/listings/${category}`,
         {
           method: "GET",
         }
