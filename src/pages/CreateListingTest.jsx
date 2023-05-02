@@ -112,7 +112,7 @@ const CreateListingTest = () => {
       formData.append("imagePath", image.name);
     }
 
-    const savedListingResponse = await fetch("http://localhost:3001/listings", {
+    const savedListingResponse = await fetch("https://live-auction-app-server.onrender.com/listings", {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
