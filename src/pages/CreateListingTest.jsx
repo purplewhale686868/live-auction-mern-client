@@ -167,7 +167,7 @@ const CreateListingTest = () => {
 
             <ImageBox>
               <Dropzone
-                acceptedFiles=".jpg,.jpeg,.png"
+                acceptedFiles=".jpg,.jpeg,.png,.JPG,.JPEG,.PNG"
                 multiple={false}
                 onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
               >
