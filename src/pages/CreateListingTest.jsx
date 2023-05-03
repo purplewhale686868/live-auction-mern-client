@@ -183,7 +183,7 @@ const CreateListingTest = () => {
                       <Typography
                         sx={{ fontFamily: "Urbanist", fontSize: "14px" }}
                       >
-                        Add Image Here
+                        Add Image Here (Only .jpg, .jpeg, .png file)
                       </Typography>
                     ) : (
                       <FlexBetween>
