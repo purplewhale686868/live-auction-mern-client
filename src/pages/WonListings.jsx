@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Listing from "../components/Listing";
 import StripeCheckout from "react-stripe-checkout";
+import { requestMethod } from "../requestMethods";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -76,7 +77,7 @@ const Hr = styled.hr`
 `;
 
 const WonListings = () => {
-  const token = useSelector((state) => state.token);
+  const userToken = useSelector((state) => state.token);
   const wonListings = useSelector((state) => state.wonListings);
   const navigate = useNavigate();
 
@@ -109,16 +110,29 @@ const WonListings = () => {
 
   useEffect(() => {
     const makeRequest = async () => {
-      const response = await fetch(`https://live-auction-app-server.onrender.com/checkout/payment`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+      // const response = await fetch(`https://live-auction-app-server.onrender.com/checkout/payment`, {
+      //   method: "POST",
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //     "Content-Type": "application/json",
+      //   },
+      //   tokenId: stripeToken.id,
+      //   amount: checkout * 100,
+      // });
+
+      const res = await requestMethod.post(
+        "/checkout/payment",
+        {
+          tokenId: stripeToken.id,
+          amount: checkout * 100,
         },
-        tokenId: stripeToken.id,
-        amount: checkout * 100,
-      });
-      const data = await response.json();
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+      const data = res.data;
       navigate("/success", {
         state: {
           stripeData: data,
@@ -126,7 +140,7 @@ const WonListings = () => {
       });
     };
     stripeToken && makeRequest();
-  }, [stripeToken, checkout, token, navigate]);
+  }, [stripeToken, checkout, userToken, navigate]);
   return (
     <Container>
       <Navbar />

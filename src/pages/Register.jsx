@@ -5,6 +5,7 @@ import { mobile } from "../responsive";
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from "yup";
+import { requestMethod } from "../requestMethods";
 
 const registerSchema = yup.object().shape({
   username: yup.string().required("required"),
@@ -73,26 +74,26 @@ const Button = styled.button`
 `;
 
 const Register = () => {
-  // const [username, setUsername] = useState("");
-  // const [email, setEmail] = useState("");
-
-  // const [password, setaPassword] = useState("");
   const navigate = useNavigate();
 
   const handleClick = async (values, onSubmitProps) => {
     // e.preventDefault();
 
-    const savedUserResponse = await fetch(
-      "https://live-auction-app-server.onrender.com/auth/register",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      }
-    );
-    const savedUser = await savedUserResponse.json();
+    // const savedUserResponse = await fetch(
+    //   "https://live-auction-app-server.onrender.com/auth/register",
+    //   {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(values),
+    //   }
+    // );
+    // const savedUser = await savedUserResponse.json();
 
-    if (savedUser) {
+    const response = await requestMethod.post("/auth/register", values, {
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response) {
       navigate("/login");
     }
   };

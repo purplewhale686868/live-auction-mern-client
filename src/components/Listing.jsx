@@ -7,6 +7,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import { requestMethod } from "../requestMethods";
 
 const Wrapper = styled.div`
   flex: 1;
@@ -133,27 +134,40 @@ const Listing = ({ listing }) => {
   }, [listing]);
 
   const handleWatchlist = async () => {
-    const response = await fetch(
-      `https://live-auction-app-server.onrender.com/listings/${updatedListing._id}/watchlist`,
+    // const response = await fetch(
+    //   `https://live-auction-app-server.onrender.com/listings/${updatedListing._id}/watchlist`,
+    //   {
+    //     method: "PATCH",
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ userId: user._id }),
+    //   }
+    // );
+
+    const response = await requestMethod.patch(
+      `/listings/${updatedListing._id}/watchlist`,
       {
-        method: "PATCH",
+        userId: user._id,
+      },
+      {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          // "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: user._id }),
       }
     );
-    const data = await response.json();
+
+    const data = response.data;
+
     setUpdatedListing(data);
   };
 
   return (
     <Wrapper>
       <Container>
-        <Image
-          src={`https://live-auction-app-server.onrender.com/assets/${updatedListing.imagePath}`}
-        />
+        <Image src={updatedListing.imagePath} />
         <Info>
           <Icon>
             <SearchOutlinedIcon

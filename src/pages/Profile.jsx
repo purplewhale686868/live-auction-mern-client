@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import Listing from "../components/Listing";
 import { addWonListings } from "../redux/authSlice";
 import { useDispatch } from "react-redux";
+import { requestMethod } from "../requestMethods";
 
 const Container = styled.div``;
 const Wrapper = styled.div``;
@@ -95,17 +96,25 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserAuctions = async () => {
-      const response = await fetch(
-        `https://live-auction-app-server.onrender.com/users/${userId}/listings`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
+      // const response = await fetch(
+      //   `https://live-auction-app-server.onrender.com/users/${userId}/listings`,
+      //   {
+      //     method: "GET",
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+      // const data = await response.json();
+      const response = await requestMethod.get(`/users/${userId}/listings`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          // "Content-Type": "application/json",
+        },
+      });
+
+      const data = response.data;
       setUserAuctions(data);
     };
     getUserAuctions();
@@ -113,17 +122,26 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserWatchlist = async () => {
-      const response = await fetch(
-        `https://live-auction-app-server.onrender.com/users/${userId}/watchlist`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
+      // const response = await fetch(
+      //   `https://live-auction-app-server.onrender.com/users/${userId}/watchlist`,
+      //   {
+      //     method: "GET",
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+      // const data = await response.json();
+
+      const response = await requestMethod.get(`/users/${userId}/watchlist`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          // "Content-Type": "application/json",
+        },
+      });
+
+      const data = response.data;
       setWatchlist(data);
     };
     getUserWatchlist();
@@ -131,17 +149,27 @@ const Profile = () => {
 
   useEffect(() => {
     const getWonListings = async () => {
-      const response = await fetch(
-        `https://live-auction-app-server.onrender.com/users/${userId}/wonListings`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
+      // const response = await fetch(
+      //   `https://live-auction-app-server.onrender.com/users/${userId}/wonListings`,
+      //   {
+      //     method: "GET",
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+      // const data = await response.json();
+
+      const response = await requestMethod.get(`/users/${userId}/wonListings`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          // "Content-Type": "application/json",
+        },
+      });
+
+      const data = response.data;
+
       setWonListings(data);
       dispatch(addWonListings({ listings: data }));
     };

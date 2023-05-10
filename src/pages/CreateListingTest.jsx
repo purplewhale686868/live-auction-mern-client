@@ -11,6 +11,7 @@ import { Box, Typography } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 import { useState } from "react";
+import { requestMethod } from "../requestMethods";
 
 const Container = styled.div`
   width: 100vw;
@@ -101,23 +102,45 @@ const CreateListingTest = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("userId", _id);
-    formData.append("title", title);
-    formData.append("category", category);
-    formData.append("bid", bid);
-    formData.append("description", description);
+    // formData.append("userId", _id);
+    // formData.append("title", title);
+    // formData.append("category", category);
+    // formData.append("bid", bid);
+    // formData.append("description", description);
 
     if (image) {
       formData.append("picture", image);
-      formData.append("imagePath", image.name);
     }
 
-    const savedListingResponse = await fetch("https://live-auction-app-server.onrender.com/listings", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-      body: formData,
+    const response = await requestMethod.post("/uploadPic", formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
-    const savedListing = await savedListingResponse.json();
+
+    console.log(response);
+
+    const { url } = response.data;
+
+    const savedListingResponse = await requestMethod.post(
+      "/listings/newListing",
+      {
+        userId: _id,
+        title: title,
+        category: category,
+        bid: bid,
+        description: description,
+        imagePath: url,
+      },
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          // "Content-Type": "application/json",
+        },
+      }
+    );
+    const savedListing = savedListingResponse.data;
 
     setImage(null);
     setTitle("");

@@ -10,6 +10,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import { useNavigate } from "react-router-dom";
+import { requestMethod } from "../requestMethods";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -186,63 +187,101 @@ const Listing = () => {
 
   useEffect(() => {
     const getListing = async () => {
-      const response = await fetch(
-        `https://live-auction-app-server.onrender.com/listings/find/${listingId}`,
-        {
-          method: "GET",
-        }
-      );
-      const data = await response.json();
+      const response = await requestMethod.get(`/listings/find/${listingId}`);
+
+      const data = response.data;
       setListing(data);
     };
     getListing();
   }, [listingId]);
 
   const handleBid = async () => {
-    const response = await fetch(
-      `https://live-auction-app-server.onrender.com/listings/${listingId}/bidding`,
+    // const response = await fetch(
+    //   `https://live-auction-app-server.onrender.com/listings/${listingId}/bidding`,
+    //   {
+    //     method: "PATCH",
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ userId: user._id, bid: bid }),
+    //   }
+    // );
+
+    const response = await requestMethod.patch(
+      `/listings/${listingId}/bidding`,
       {
-        method: "PATCH",
+        userId: user._id,
+        bid: bid,
+      },
+      {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          // "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: user._id, bid: bid }),
       }
     );
-    const data = await response.json();
+    const data = response.data;
     setListing(data);
     setBid("");
   };
 
   const handleClose = async () => {
-    const response = await fetch(
-      `https://live-auction-app-server.onrender.com/listings/${listing?._id}/closeListing`,
+    // const response = await fetch(
+    //   `https://live-auction-app-server.onrender.com/listings/${listing?._id}/closeListing`,
+    //   {
+    //     method: "PATCH",
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // );
+    // const data = await response.json();
+
+    const response = await requestMethod.patch(
+      `/listings/${listingId}/closeListing`,
       {
-        method: "PATCH",
+        listingId: listingId,
+      },
+      {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          // "Content-Type": "application/json",
         },
       }
     );
-    const data = await response.json();
+    const data = response.data;
     setListing(data);
   };
 
   const handleWatchlist = async () => {
-    const response = await fetch(
-      `https://live-auction-app-server.onrender.com/listings/${listing?._id}/watchlist`,
+    // const response = await fetch(
+    //   `https://live-auction-app-server.onrender.com/listings/${listing?._id}/watchlist`,
+    //   {
+    //     method: "PATCH",
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ userId: user._id }),
+    //   }
+    // );
+    // const data = await response.json();
+
+    const response = await requestMethod.patch(
+      `/listings/${listing?._id}/watchlist`,
       {
-        method: "PATCH",
+        userId: user._id,
+      },
+      {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          // "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: user._id }),
       }
     );
-    const data = await response.json();
+    const data = response.data;
     setListing(data);
   };
 
@@ -251,7 +290,7 @@ const Listing = () => {
       <Navbar />
       <Wrapper>
         <ImgContainer>
-          <Image src={`https://live-auction-app-server.onrender.com/assets/${listing?.imagePath}`} />
+          <Image src={listing?.imagePath} />
           <Icon onClick={handleWatchlist}>
             {listing?.watchlistOwner.includes(user?._id) ? (
               <FavoriteIcon sx={{ color: "#ff4d4d" }} />

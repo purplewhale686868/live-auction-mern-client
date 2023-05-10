@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Listing from "./Listing";
 import { useEffect } from "react";
 import { useState } from "react";
+import { requestMethod } from "../requestMethods";
 
 const Container = styled.div`
   padding: 20px;
@@ -17,13 +18,17 @@ const AllListings = () => {
 
   useEffect(() => {
     const getAllListings = async () => {
-      const response = await fetch(
-        "https://live-auction-app-server.onrender.com/listings/allListings",
-        {
-          method: "GET",
-        }
-      );
-      const data = await response.json();
+      // const response = await fetch(
+      //   "https://live-auction-app-server.onrender.com/listings/allListings",
+      //   {
+      //     method: "GET",
+      //   }
+      // );
+      // const data = await response.json();
+
+      const response = await requestMethod.get("/listings/allListings");
+
+      const data = response.data;
       setListings(data);
     };
     getAllListings();

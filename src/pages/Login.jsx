@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../redux/authSlice";
 import { Formik } from "formik";
 import * as yup from "yup";
+import { requestMethod } from "../requestMethods";
 
 const loginSchema = yup.object().shape({
   email: yup.string().email("invalid email").required("required"),
@@ -82,13 +83,21 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const handleClick = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("https://live-auction-app-server.onrender.com/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
+    // const loggedInResponse = await fetch(
+    //   "https://live-auction-app-server.onrender.com/auth/login",
+    //   {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(values),
+    //   }
+    // );
 
-    const loggedIn = await loggedInResponse.json();
+    const response = await requestMethod.post("/auth/login", values, {
+      headers: { "Content-Type": "application/json" },
+    });
+    console.log(response);
+
+    const loggedIn = response.data;
 
     if (loggedIn) {
       dispatch(
